@@ -1,0 +1,98 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    perspective: 1000px;
+}
+
+.envelope {
+    width: 300px;
+    height: 200px;
+    background: #ff5252;
+    position: relative;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #ff1744;
+    /* Darker red top flap */
+    transform-origin: top;
+    z-index: 2;
+}
+
+.envelope::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 150px solid #e91e63;
+    border-right: 150px solid #e91e63;
+    border-bottom: 200px solid transparent;
+    /* Side flaps */
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.seal {
+    position: absolute;
+    z-index: 3;
+    top: 40%;
+    font-size: 3rem;
+    background: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.text {
+    position: absolute;
+    bottom: 20px;
+    color: white;
+    z-index: 3;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.letterPaper {
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    padding: 3rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: #5d4037;
+    text-align: left;
+    background-image:
+        linear-gradient(#eee .1rem, transparent .1rem);
+    background-size: 100% 2rem;
+}
+
+.date {
+    text-align: right;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.signature {
+    margin-top: 2rem;
+    text-align: right;
+}

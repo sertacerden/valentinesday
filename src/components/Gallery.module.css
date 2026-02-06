@@ -1,0 +1,156 @@
+.galleryWrapper {
+    width: 100%;
+    padding-top: 4rem;
+    /* More space at top */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; REMOVED to keep text at top */
+    /* Center content vertically too */
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+}
+
+.heading {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    z-index: 5;
+}
+
+.subtext {
+    margin-bottom: 2rem;
+    opacity: 0.7;
+    z-index: 5;
+}
+
+.scatterArea {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    /* Centers it vertically in the remaining space */
+}
+
+.card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* Use margins to center the card based on its size (280px width + padding) */
+    /* Total width approx 310px (280 + 15+15 padding), Height varies but approx 350px */
+    margin-left: -155px;
+    /* Half of width */
+    margin-top: -175px;
+    /* Half of height estimate */
+
+    width: 280px;
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    border-radius: 4px;
+}
+
+.polaroidInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    /* Let the card handle clicks */
+}
+
+.image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    background: #eee;
+    border-radius: 2px;
+}
+
+.caption {
+    margin-top: 15px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    /* Darker background */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.expandedCard {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.expandedImage {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.expandedCaption {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.closeBtn {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    color: #333;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
