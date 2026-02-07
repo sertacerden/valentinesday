@@ -1,0 +1,103 @@
+.puzzleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 2rem;
+    padding: 2rem;
+    position: relative;
+}
+
+.gameArea {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dropZone {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+    border-radius: 8px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    width: 320px;
+    /* 4 * 80px */
+    height: 320px;
+    position: relative;
+}
+
+/* Individual slots in the grid */
+.slot {
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.piecesArea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 340px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 1rem;
+    min-height: 100px;
+    justify-content: center;
+}
+
+.puzzlePiece {
+    width: 80px;
+    height: 80px;
+    cursor: grab;
+    background-image: url('/pictures/puzzle.jpeg');
+    background-size: 320px 320px;
+    /* Matches total grid size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.puzzlePiece:active {
+    cursor: grabbing;
+    z-index: 100;
+    transform: scale(1.1);
+}
+
+.successMessage {
+    text-align: center;
+    animation: popIn 0.5s ease;
+}
+
+.successMessage h2 {
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .gameArea {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -56,6 +56,14 @@ export default function Letter() {
                         Seni kelimelerin anlatabileceğinden daha çok seviyorum.
                     </p>
                     <p className={styles.signature}>Sonsuza kadar senin yanında olacağım bebeğim,</p>
+
+                    <button
+                        className={styles.nextBtn}
+                        onClick={() => window.dispatchEvent(new CustomEvent('startPuzzle'))}
+                        style={{ marginTop: '2rem', padding: '10px 20px', fontSize: '1rem', background: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer' }}
+                    >
+                        Son bir oyun... 🧩
+                    </button>
                 </motion.div>
             )}
         </div>

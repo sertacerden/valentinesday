@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Quiz from './components/Quiz';
 import Gallery from './components/Gallery';
 import Letter from './components/Letter';
+import Puzzle from './components/Puzzle';
 import { fetchQuestions } from './services/quizService';
 import './App.css';
 
@@ -10,15 +11,21 @@ import './App.css';
 // or just rely on inline/global. Let's make a simple one.
 
 function App() {
-  const [gameState, setGameState] = useState('loading'); // loading, landing, quiz, result, gallery, letter
-  const [questions, setQuestions] = useState([]);
+  const [gameState, setGameState] = useState('loading'); // loading, landing, quiz, success, fail, gallery, letter, puzzle
   const [score, setScore] = useState(0);
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
+    // Load questions for the quiz
     fetchQuestions().then(data => {
       setQuestions(data);
       setGameState('landing');
     });
+
+    // Listen for puzzle start from Letter component
+    const handleStartPuzzle = () => setGameState('puzzle');
+    window.addEventListener('startPuzzle', handleStartPuzzle);
+    return () => window.removeEventListener('startPuzzle', handleStartPuzzle);
   }, []);
 
   const startQuiz = () => {
@@ -128,6 +135,7 @@ function App() {
           </motion.div>
         )}
 
+
         {gameState === 'letter' && (
           <motion.div
             key="letter"
@@ -138,6 +146,20 @@ function App() {
             <Letter />
             <button onClick={() => setGameState('gallery')} style={{ marginTop: '2rem', background: '#ccc', fontSize: '0.9rem' }}>
               Anılara Dön
+            </button>
+          </motion.div>
+        )}
+
+        {gameState === 'puzzle' && (
+          <motion.div
+            key="puzzle"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="screen center"
+          >
+            <Puzzle />
+            <button onClick={() => setGameState('letter')} style={{ marginTop: '2rem', background: '#ccc', fontSize: '0.9rem' }}>
+              Mektuba Dön
             </button>
           </motion.div>
         )}
