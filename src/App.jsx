@@ -4,6 +4,8 @@ import Quiz from './components/Quiz';
 import Gallery from './components/Gallery';
 import Letter from './components/Letter';
 import Puzzle from './components/Puzzle';
+import MusicPlayer from './components/MusicPlayer';
+import WhackAMole from './components/WhackAMole';
 import { fetchQuestions } from './services/quizService';
 import './App.css';
 
@@ -25,7 +27,15 @@ function App() {
     // Listen for puzzle start from Letter component
     const handleStartPuzzle = () => setGameState('puzzle');
     window.addEventListener('startPuzzle', handleStartPuzzle);
-    return () => window.removeEventListener('startPuzzle', handleStartPuzzle);
+
+    // Listen for love calc start
+    const handleStartLoveCalc = () => setGameState('loveCalc');
+    window.addEventListener('startLoveCalc', handleStartLoveCalc);
+
+    return () => {
+      window.removeEventListener('startPuzzle', handleStartPuzzle);
+      window.removeEventListener('startLoveCalc', handleStartLoveCalc);
+    };
   }, []);
 
   const startQuiz = () => {
@@ -55,6 +65,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <MusicPlayer />
       <AnimatePresence mode="wait">
         {gameState === 'loading' && (
           <motion.div
@@ -79,7 +90,17 @@ function App() {
             <h1>Sevgililer Günün Kutlu Olsun!</h1>
             <p className="subtitle">Senin için özel bir şey hazırladım.</p>
             <p>Ama önce, bizi ne kadar iyi tanıdığını görelim...</p>
-            <button onClick={startQuiz} className="start-btn">Teste Başla</button>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+              <button onClick={startQuiz} className="start-btn">Teste Başla</button>
+              <button
+                onClick={() => setGameState('whackamole')}
+                className="start-btn"
+                style={{ background: '#ff9800', fontSize: '1rem', padding: '0.8rem 2rem' }}
+              >
+                Önce Bir Oyun Oyna? 🔨
+              </button>
+            </div>
           </motion.div>
         )}
 
@@ -92,6 +113,17 @@ function App() {
             className="screen"
           >
             <Quiz questions={questions} onComplete={handleQuizComplete} />
+          </motion.div>
+        )}
+
+        {gameState === 'whackamole' && (
+          <motion.div
+            key="whackamole"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="screen center"
+          >
+            <WhackAMole onBack={() => setGameState('landing')} />
           </motion.div>
         )}
 

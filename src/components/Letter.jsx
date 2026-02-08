@@ -60,7 +60,7 @@ export default function Letter() {
                     <button
                         className={styles.nextBtn}
                         onClick={() => window.dispatchEvent(new CustomEvent('startPuzzle'))}
-                        style={{ marginTop: '2rem', padding: '10px 20px', fontSize: '1rem', background: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer' }}
+                        style={{ marginTop: '2rem', padding: '10px 20px', fontSize: '1rem', background: 'var(--color-primary)', color: 'white', border: 'none', borderRadius: '20px', cursor: 'pointer', marginRight: '1rem' }}
                     >
                         Son bir oyun... 🧩
                     </button>
